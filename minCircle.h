@@ -1,3 +1,8 @@
+/*
+ * Assignment 4
+ * Shir Fintsy 206949075
+ * Ohad Marmor 207481524
+ */
 
 #ifndef MINCIRCLE_H_
 #define MINCIRCLE_H_

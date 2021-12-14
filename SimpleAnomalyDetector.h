@@ -1,5 +1,5 @@
 /*
- * Assignment 2
+ * Assignment 4
  * Shir Fintsy 206949075
  * Ohad Marmor 207481524
  */
@@ -7,7 +7,6 @@
 #ifndef SIMPLEANOMALYDETECTOR_H_
 #define SIMPLEANOMALYDETECTOR_H_
 
-//#include "anomaly_detection_util.h"
 #include "minCircle.h"
 #include "AnomalyDetector.h"
 #include <vector>
@@ -18,11 +17,10 @@
 
 struct correlatedFeatures{
     string feature1,feature2;  // names of the correlated features
-    float corrlation; // correlation > 0.9
-    Line linReg;
+    float corrlation;
+    Line lin_reg;
     Circle minCircle = Circle(Point(0,0),0);
-    float threshold; //היסט max
-    //int line;
+    float threshold;
     bool isCircleDetect;
 };
 
@@ -44,13 +42,11 @@ public:
     virtual correlatedFeatures create_cor_feature_cir(float pear, int feature1, int feature2,const TimeSeries &ts);
     virtual AnomalyReport check_if_inside(const TimeSeries &ts, const correlatedFeatures &i);
 };
+
 Point** find_points_of_correlated_features (const TimeSeries &ts, string feat1, string feat2);
 float* from_vector_to_array(vector<float> feature);
 Line find_linear_reg (const TimeSeries &ts, string feat1, string feat2);
 float max_threshold (Point** points, Line line, int size);
-int return_timeStep(Point** points, Line line, int size);
-float get_threshold (const TimeSeries &ts, string feat1, string feat2);
-AnomalyReport check_if_detect(const TimeSeries &ts, const correlatedFeatures &i);
+AnomalyReport check_if_detect(const TimeSeries &ts, const correlatedFeatures &cor);
 
-void create_cor_feature(struct correlatedFeatures& cor, TimeSeries ts, float pear, int i, int c);
 #endif /* SIMPLEANOMALYDETECTOR_H_ */
